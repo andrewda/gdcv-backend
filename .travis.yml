@@ -6,6 +6,6 @@ services:
   - docker
 
 before_install:
-  - docker build -t thebluealliance/gdcv ./ops/dev.Dockerfile
+  - docker build -t thebluealliance/gdcv ./ops/
   - docker run thebluealliance/gdcv /bin/sh -c "ls; ls ~;"
   - docker run thebluealliance/gdcv /bin/sh -c "./local-client/run-tests.sh"
