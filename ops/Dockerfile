@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
   vim \
   openssh-server
 
+COPY . /root
 
 # Add gcloud repository and Cloud SDK dependencies
 RUN apt-get update && apt-get install -y apt-transport-https curl
@@ -29,11 +30,10 @@ RUN apt-get update && apt-get install -y \
 
 # Set up frc-livescore dependencies
 RUN apt-get update && apt-get install -y tesseract-ocr imagemagick locales unzip
+RUN pip install -r /root/requirements.txt
 ENV LC_ALL C
 COPY ./ops/build-opencv.sh /build-opencv.sh
 RUN /build-opencv.sh 3.4.0
-
-COPY . /root
 
 # Install mysql server and python library
 RUN apt-get install -y mysql-server libmysqlclient-dev
