@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y \
 # Set up frc-livescore dependencies
 RUN apt-get update && apt-get install -y tesseract-ocr imagemagick locales unzip
 RUN pip install -r /root/requirements.txt
+RUN pip install pex
 ENV LC_ALL C
 COPY ./ops/build-opencv.sh /build-opencv.sh
 RUN /build-opencv.sh 3.4.0
